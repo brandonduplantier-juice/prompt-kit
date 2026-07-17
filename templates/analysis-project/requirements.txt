@@ -1,6 +1,16 @@
-# Pinned. Verified working together on 2026-07-17.
-pandas==2.2.2
+# Pinned to versions that ship prebuilt Windows wheels for Python 3.13.
+#
+# Why the lower bounds matter, and this is not cosmetic:
+#   pandas < 2.2.3   has NO cp313 Windows wheel. Pip compiles from source and fails.
+#   pyarrow < 18.0.0 has NO cp313 Windows wheel. Same failure.
+# Verified against the PyPI release metadata on 2026-07-17.
+#
+# pandas 3.x exists and is not pinned here. It is a major version with breaking
+# changes (string dtype defaults, copy-on-write) and 02_clean.py has not been tested
+# against it. Do not bump without re-running the clean template.
+
+pandas==2.3.3
 pandera==0.32.1
-pyarrow==17.0.0
+pyarrow==18.1.0
 matplotlib==3.9.2
 numpy==2.1.1
