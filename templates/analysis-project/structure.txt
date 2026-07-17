@@ -1,0 +1,19 @@
+Standard analysis repo layout. Numbered scripts run in order, top to bottom.
+
+<project>/
+  README.md              finding first, limitations honest
+  METHODS.md             filled in BEFORE the analysis
+  requirements.txt       pinned
+  .gitignore             .venv, .env, data/raw
+  data/
+    raw/                 gitignored, never edited, never committed
+    processed/           outputs of 02, safe to delete and regenerate
+  01_load.py             pull or point at the source, write to data/raw
+  02_clean.py            data/raw to data/processed, prints row counts each step
+  03_analyze.py          prints every number that appears in the report
+  04_figures.py          writes to figures/
+  figures/
+  notebooks/             exploration only, never the source of a reported number
+
+Rule: any number in README.md must be printed by a script in this repo. If you cannot
+point at the line that produces it, it does not go in the README.
