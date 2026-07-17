@@ -1,0 +1,27 @@
+# Copy to .streamlit/config.toml in any Streamlit project.
+# Verified against current Streamlit theming docs: font accepts a
+# "<family>:<css url>, <fallbacks>" string, and chartCategoricalColors sets the
+# series colors for Plotly, Altair, and Vega-Lite charts.
+# https://docs.streamlit.io/develop/api-reference/configuration/config.toml
+
+[theme]
+base = "light"
+primaryColor = "#0B5D5B"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F7F8F8"
+textColor = "#14181B"
+borderColor = "#DDE2E3"
+
+font = "'IBM Plex Sans':https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap, sans-serif"
+codeFont = "'IBM Plex Mono':https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap, monospace"
+
+# Okabe-Ito colorblind-safe. Perception first, identity second.
+chartCategoricalColors = ["#0072B2", "#E69F00", "#009E73", "#CC79A7", "#56B4E9", "#D55E00", "#F0E442", "#000000"]
+chartSequentialColors = ["#E6F0F0", "#C2DBDA", "#9CC5C4", "#75AFAD", "#4E9997", "#2C8280", "#186D6B", "#0B5D5B", "#054544"]
+
+[theme.dark]
+primaryColor = "#14908C"
+backgroundColor = "#101416"
+secondaryBackgroundColor = "#181D20"
+textColor = "#E8ECED"
+borderColor = "#2A3235"

@@ -1,0 +1,32 @@
+{
+  "name": "Duplantier Signature v1",
+  "dataColors": ["#0072B2", "#E69F00", "#009E73", "#CC79A7", "#56B4E9", "#D55E00", "#F0E442", "#000000"],
+  "good": "#0072B2",
+  "neutral": "#4A5457",
+  "bad": "#D55E00",
+  "maximum": "#0B5D5B",
+  "center": "#7FA9A8",
+  "minimum": "#E6F0F0",
+  "null": "#DDE2E3",
+  "background": "#FFFFFF",
+  "secondaryBackground": "#F7F8F8",
+  "foreground": "#14181B",
+  "tableAccent": "#0B5D5B",
+  "textClasses": {
+    "title":     { "fontFace": "Segoe UI Semibold", "fontSize": 14, "color": "#14181B" },
+    "header":    { "fontFace": "Segoe UI Semibold", "fontSize": 12, "color": "#14181B" },
+    "label":     { "fontFace": "Segoe UI",          "fontSize": 10, "color": "#4A5457" },
+    "callout":   { "fontFace": "Segoe UI Semibold", "fontSize": 40, "color": "#14181B" },
+    "largeTitle":{ "fontFace": "Segoe UI Semibold", "fontSize": 18, "color": "#14181B" }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [{ "show": true, "color": { "solid": { "color": "#FFFFFF" } } }],
+        "border":     [{ "show": true, "color": { "solid": { "color": "#DDE2E3" } }, "radius": 6 }],
+        "visualHeader":[{ "show": false }],
+        "title":      [{ "alignment": "left", "fontColor": { "solid": { "color": "#14181B" } } }]
+      }
+    }
+  }
+}

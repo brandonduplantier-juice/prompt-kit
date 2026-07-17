@@ -1,0 +1,103 @@
+/* Signature tokens for web and Flask. Import this before any other stylesheet.
+   Generated from brand/tokens.json. Do not hardcode a hex anywhere else. */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
+:root {
+  /* Chrome. Identity only. Never encodes data. */
+  --accent:       #0B5D5B;
+  --accent-hover: #0F7A77;
+  --accent-wash:  #E6F0F0;
+  --ink:          #14181B;
+  --muted:        #4A5457;
+  --line:         #DDE2E3;
+  --paper:        #F7F8F8;
+  --surface:      #FFFFFF;
+
+  /* Data. Okabe-Ito, colorblind-safe. Perception first. */
+  --d1: #0072B2;
+  --d2: #E69F00;
+  --d3: #009E73;
+  --d4: #CC79A7;
+  --d5: #56B4E9;
+  --d6: #D55E00;
+  --d7: #F0E442;
+  --d8: #000000;
+  --good: #0072B2;
+  --bad:  #D55E00;
+
+  /* Type */
+  --font-sans: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Cascadia Mono', Consolas, monospace;
+
+  /* Scale. One ratio, used everywhere, so nothing is arbitrary. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 40px;
+  --space-6: 64px;
+  --radius: 6px;
+  --border: 1px solid var(--line);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink:     #E8ECED;
+    --muted:   #9AA5A8;
+    --paper:   #101416;
+    --surface: #181D20;
+    --line:    #2A3235;
+    --accent:  #14908C;
+    --accent-wash: #12292A;
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { color: var(--accent-hover); }
+
+code, pre, .metric, td.num, th.num {
+  font-family: var(--font-mono);
+  /* Tabular figures. Numbers line up in columns instead of jittering. */
+  font-feature-settings: 'tnum' 1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The signature detail: a single accent rule under section headings.
+   One quiet mark that recurs everywhere, rather than color everywhere. */
+.section-rule {
+  border: 0;
+  border-top: 2px solid var(--accent);
+  width: 40px;
+  margin: var(--space-2) 0 var(--space-4) 0;
+}
+
+.card {
+  background: var(--surface);
+  border: var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+}
+.card:hover { border-color: var(--accent); }
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  background: var(--accent-wash);
+  border-radius: 3px;
+  padding: 2px var(--space-2);
+}
+
+.kpi { font-family: var(--font-mono); font-size: 40px; font-weight: 600; color: var(--ink); }
+.kpi-label { color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; }

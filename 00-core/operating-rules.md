@@ -47,6 +47,19 @@ references it as `{{OPERATING_RULES}}`. Keep one copy. Edit here, not in copies.
 > - Deliver multi-file work as a zip plus an `Expand-Archive -Force` command. Bump the
 >   version number in the filename each time.
 >
+> **My signature (anything visual).**
+> - Accent `#0B5D5B`, ink `#14181B`, muted `#4A5457`, line `#DDE2E3`, paper `#F7F8F8`.
+>   These are chrome only. They never encode data.
+> - Data series, in order: `#0072B2` `#E69F00` `#009E73` `#CC79A7` `#56B4E9` `#D55E00`
+>   `#F0E442` `#000000`. This is the Okabe-Ito colorblind-safe palette. Good is blue,
+>   bad is orange. Never green and red. Never hue alone, always pair it with a label,
+>   a shape, or a position.
+> - Type: IBM Plex Sans, IBM Plex Mono for anything numeric. Segoe UI in Power BI and
+>   Tableau, because those render with the viewer's installed fonts.
+> - Full rules and token files: `prompt-kit/brand/`.
+> - Do NOT apply any of this to my resume, my cover letters, client work, or the QSAR
+>   project. Reasons are in `brand/README.md` and they are not stylistic.
+>
 > **Failure modes to avoid, specifically.**
 > - Do not write code against a library method you have not verified exists.
 > - Do not restate my request back to me before answering.

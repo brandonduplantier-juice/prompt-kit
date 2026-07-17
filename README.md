@@ -16,6 +16,14 @@ prompts/
   data-analysis-project.md    dataset and question to a defensible finding
   dashboard-build.md          Power BI, Tableau, Looker Studio, Streamlit
   portfolio-writeup.md        card, README, resume bullet, LinkedIn, interview prep
+brand/
+  README.md                   the signature: what it is, where it must not go
+  tokens.json                 single source of truth for every color and font
+  tokens.css                  CSS variables for web and Flask
+  powerbi-theme.json          Power BI import
+  streamlit-config.toml       copy to .streamlit/config.toml
+  tableau-Preferences.tps     merge into My Tableau Repository
+  brandon.mplstyle            matplotlib figures
 templates/
   flask-service/              working scaffold, tests pass out of the box
   analysis-project/           METHODS.md, README.md, repo layout
@@ -51,6 +59,9 @@ When you next touch any of them, run `prompts/prompt-checker.md` over it first.
    a code review, not a measurement.
 3. The Flask scaffold's tests pass without network access. That proves the shape, not the
    integration.
+4. The Power BI theme and the Tableau palette are syntax-valid but have not been imported
+   into either tool. Power BI silently ignores properties it does not recognize, so an
+   ignored property looks exactly like a working one until you look.
 
 ## Versioning
 
