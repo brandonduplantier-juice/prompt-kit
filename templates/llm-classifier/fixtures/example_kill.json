@@ -1,0 +1,20 @@
+{
+  "source": "Senior BI Engineer. 7+ years required. Must hold a completed Bachelor degree. Onsite in Austin, TX. dbt, Databricks, Spark.",
+  "facts": {
+    "source_complete": true,
+    "remote_us": false,
+    "work_mode": "onsite",
+    "max_years_required": 7,
+    "degree_hard_required": true,
+    "seniority": "senior",
+    "title_is_analyst": false,
+    "stack_mentioned": [
+      "dbt",
+      "databricks",
+      "spark"
+    ],
+    "excludes_ohio": null,
+    "evidence_years": "7+ years required.",
+    "evidence_remote": "Onsite in Austin, TX."
+  }
+}

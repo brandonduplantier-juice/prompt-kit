@@ -1,0 +1,20 @@
+{
+  "source": "Data Analyst (Remote, US). 2+ years of experience required. Bachelor degree or equivalent experience. Tools: SQL, Python, Tableau. This role is fully remote within the United States.",
+  "facts": {
+    "source_complete": true,
+    "remote_us": true,
+    "work_mode": "remote",
+    "max_years_required": 2,
+    "degree_hard_required": false,
+    "seniority": "entry",
+    "title_is_analyst": true,
+    "stack_mentioned": [
+      "sql",
+      "python",
+      "tableau"
+    ],
+    "excludes_ohio": false,
+    "evidence_years": "2+ years of experience required.",
+    "evidence_remote": "This role is fully remote within the United States."
+  }
+}

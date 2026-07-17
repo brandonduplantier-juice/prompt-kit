@@ -1,0 +1,4 @@
+# Verified working together on 2026-07-17, Python 3.13 Windows wheels confirmed.
+anthropic==0.117.0
+pydantic==2.13.4
+pytest==8.3.2

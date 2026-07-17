@@ -13,6 +13,7 @@ hooks/pre-commit              runs check.py --staged before every commit
 prompts/
   prompt-builder.md           makes new prompts from a rough idea
   prompt-checker.md           audits, tests, fixes, and loops on an existing prompt
+  llm-orchestration.md        systems where the model is a component, not the product
   sql-extract.md              pulling data out correctly, before any cleaning
   data-cleaning.md            messy file to a dataset you can defend
   data-analysis-project.md    dataset and question to a defensible finding
@@ -31,9 +32,11 @@ brand/
 templates/
   flask-service/              working scaffold, tests pass out of the box
   analysis-project/           schema.py + 02_clean.py both run, METHODS, data dictionary
+  llm-classifier/             working: facts schema, model call, pure scorer, 22 tests
 docs/
   stack-conventions.md        the environment facts you keep re-typing
   sql-patterns.md             the silent SQL failures, with the checks that catch them
+  llm-patterns.md             the model extracts facts, code decides. Plus what breaks
   git-workflow.md             PowerShell git, per situation
 ```
 
@@ -105,6 +108,12 @@ Not invented here. Where a published standard exists, the kit uses it and says s
 3. Schema validation: pandera, chosen over Great Expectations because it is pandas-first
    and needs no configuration. Great Expectations is built for multi-engine pipelines with
    governance and shared expectation suites, which is not this. Verified on pandera 0.32.1.
+4. Structured outputs on the Claude API, now generally available and using constrained
+   decoding: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
+   API shape verified against anthropic SDK 0.117.0 by introspection, not from memory.
+
+`docs/llm-patterns.md` is the exception. It is not derived from anything public. It is the
+architecture from career-ops, written down.
 
 ## Prompts you already have that live elsewhere
 
@@ -136,6 +145,12 @@ When you next touch any of them, run `prompts/prompt-checker.md` over it first.
    calls, it does not make them.
 8. Zero of the prompts in `prompts/` have been through `prompts/prompt-checker.md`. The
    kit does not yet meet its own standard.
+9. `templates/llm-classifier/` has 22 tests that pass with no API key, which proves the
+   scorer. `classify.py`'s branching was proven against an injected fake client. Neither
+   proves a live call, and no live call has been made.
+10. Ten prompts is more than anyone remembers. The realistic set you will reach for is
+   three or four. The rest are reference, and that is fine, as long as you know which is
+   which.
 
 ## Versioning
 

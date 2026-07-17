@@ -183,13 +183,25 @@ def check_pins(path):
 
 
 def run_tests():
-    print("\nrunning template tests (--full)")
-    svc = ROOT / "templates" / "flask-service"
-    r = subprocess.run([sys.executable, "-m", "pytest", "-q"], cwd=svc,
-                       capture_output=True, text=True)
-    print((r.stdout or r.stderr).strip()[-400:])
-    if r.returncode != 0:
-        fail("templates/flask-service", "test suite failed")
+    """
+    Run every template test suite, discovered rather than hardcoded.
+
+    This used to name templates/flask-service explicitly, which meant a new template's
+    tests silently never ran. A check that quietly skips is worse than no check.
+    """
+    suites = sorted({p.parent for p in ROOT.glob("templates/*/test_*.py")})
+    if not suites:
+        warn("templates", "no test suites found, which is itself suspicious")
+        return
+    print(f"\nrunning {len(suites)} template test suite(s) (--full)")
+    for s in suites:
+        rel = s.relative_to(ROOT)
+        r = subprocess.run([sys.executable, "-m", "pytest", "-q"], cwd=s,
+                           capture_output=True, text=True)
+        line = (r.stdout or r.stderr).strip().splitlines()
+        print(f"  {rel}: {line[-1] if line else 'no output'}")
+        if r.returncode != 0:
+            fail(str(rel), "test suite failed")
 
 
 def main():
