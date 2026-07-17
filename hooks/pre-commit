@@ -1,0 +1,27 @@
+#!/bin/sh
+# Runs check.py against staged files before every commit.
+#
+# Install once, from the repo root:
+#     git config core.hooksPath hooks
+#
+# core.hooksPath is used instead of copying into .git/hooks so that this file is
+# tracked in the repo. A hook that lives only in .git/hooks is invisible to git,
+# does not survive a fresh clone, and cannot be reviewed.
+#
+# On Windows this runs under the bash that ships with Git for Windows. It needs
+# `python` on PATH. If it is not, the hook says so rather than passing silently,
+# because a check that quietly does nothing is worse than no check.
+
+if command -v python >/dev/null 2>&1; then
+  PY=python
+elif command -v py >/dev/null 2>&1; then
+  PY=py
+elif command -v python3 >/dev/null 2>&1; then
+  PY=python3
+else
+  echo "pre-commit: no python on PATH, cannot run check.py"
+  echo "Fix your PATH or run: git config --unset core.hooksPath"
+  exit 1
+fi
+
+exec "$PY" check.py --staged

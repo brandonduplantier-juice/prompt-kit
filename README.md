@@ -6,6 +6,8 @@ history rather than from generic best practice.
 ## What is here
 
 ```
+check.py                      the only thing here that enforces anything
+hooks/pre-commit              runs check.py --staged before every commit
 00-core/
   operating-rules.md          the block that goes at the top of every prompt
 prompts/
@@ -34,6 +36,35 @@ docs/
   sql-patterns.md             the silent SQL failures, with the checks that catch them
   git-workflow.md             PowerShell git, per situation
 ```
+
+## Enforcement
+
+Everything else in this repo is a document that depends on you remembering it.
+`check.py` does not. Install the hook once, from the repo root:
+
+```powershell
+git config core.hooksPath hooks
+python check.py
+```
+
+From then on, every commit is checked and blocked on failure. It catches: em-dashes and
+en-dashes, UTF-8 BOMs, credentials matched by shape (AWS, GitHub, Anthropic, OpenAI,
+Slack, JWTs, private keys, Postgres URLs with inline passwords), files that must never be
+tracked (`.env`, `__pycache__`, `.pyc`, `.venv`, `data/raw`, `.bak`), broken Python, JSON,
+TOML, or XML syntax, and unpinned dependencies (warning, not a block).
+
+`python check.py --full` also runs the template test suites. That is not in the hook,
+because a slow hook gets bypassed.
+
+**Why the checks are deliberately narrow.** A checker that cries wolf gets bypassed. The
+first time it blocks a commit for a reason you disagree with, you will type `--no-verify`,
+and from then on it enforces nothing. So every check fires only on things that are
+unambiguously wrong. Do not add fuzzy checks. If you find yourself using `--no-verify`
+routinely, the check is wrong and should be fixed, not routed around.
+
+`hooks/` is used via `core.hooksPath` rather than `.git/hooks` so the hook is tracked in
+the repo. A hook that lives only in `.git/hooks` is invisible to git, does not survive a
+fresh clone, and cannot be reviewed.
 
 ## The data pipeline, in order
 
@@ -95,6 +126,11 @@ When you next touch any of them, run `prompts/prompt-checker.md` over it first.
 6. `docs/sql-patterns.md` is reasoned from PostgreSQL semantics and is not machine-tested.
    Every claim in it is checkable in about a minute in DB Fiddle. Check the ones you plan
    to rely on.
+7. `check.py` enforces mechanical rules only. It cannot tell you a prompt is bad, a
+   finding is wrong, or a dashboard is useless. It buys back attention for the judgment
+   calls, it does not make them.
+8. Zero of the prompts in `prompts/` have been through `prompts/prompt-checker.md`. The
+   kit does not yet meet its own standard.
 
 ## Versioning
 
