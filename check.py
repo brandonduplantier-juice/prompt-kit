@@ -6,7 +6,8 @@ Everything else here is a document that depends on you remembering it. This does
 Wire it to a git pre-commit hook (see hooks/pre-commit) and the rules become binding.
 
 Usage:
-    python check.py              check every tracked file
+    python check.py              check every tracked file, plus untracked ones
+                                 that .gitignore does not exclude
     python check.py --staged     check only staged files (this is what the hook runs)
     python check.py --full       also run the template test suites (slow, not in the hook)
 
@@ -83,11 +84,20 @@ def files_to_check(staged):
     if staged:
         names = git("diff", "--cached", "--name-only", "--diff-filter=ACM")
     else:
-        names = git("ls-files")
-    return [ROOT / n for n in names if (ROOT / n).is_file()]
+        # Tracked files PLUS untracked-but-not-ignored ones.
+        #
+        # `git ls-files` alone only sees tracked files, which means a brand new
+        # poisoned file makes this script print "clean". That is false confidence
+        # from the one tool whose job is preventing false confidence. --others
+        # --exclude-standard adds untracked files while still honoring .gitignore,
+        # so .venv and __pycache__ stay out.
+        names = git("ls-files") + git("ls-files", "--others", "--exclude-standard")
+    return [ROOT / n for n in dict.fromkeys(names) if (ROOT / n).is_file()]
 
 
 def check_tracked_paths(staged):
+    # Only ever complains about files git is actually tracking or about to.
+    # An untracked .env on disk is correct and must not be flagged.
     names = (git("diff", "--cached", "--name-only") if staged else git("ls-files"))
     for n in names:
         for pat, msg in NEVER_TRACK:
@@ -195,7 +205,7 @@ def main():
     if args.full:
         run_tests()
 
-    scope = "staged files" if args.staged else "all tracked files"
+    scope = "staged files" if args.staged else "tracked + untracked, ignoring .gitignore"
     print(f"checked {checked} text files ({scope})")
 
     for w in warns:

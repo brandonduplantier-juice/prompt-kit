@@ -56,6 +56,11 @@ TOML, or XML syntax, and unpinned dependencies (warning, not a block).
 `python check.py --full` also runs the template test suites. That is not in the hook,
 because a slow hook gets bypassed.
 
+Scope: the hook checks staged files. A bare `python check.py` checks tracked files **plus
+untracked ones that .gitignore does not exclude**, so a new poisoned file that was never
+staged still gets caught. Files inside `.gitignore` are skipped, and an untracked `.env`
+sitting on disk is correct and is not flagged.
+
 **Why the checks are deliberately narrow.** A checker that cries wolf gets bypassed. The
 first time it blocks a commit for a reason you disagree with, you will type `--no-verify`,
 and from then on it enforces nothing. So every check fires only on things that are
