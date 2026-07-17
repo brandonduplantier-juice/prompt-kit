@@ -1,0 +1,17 @@
+# Root gitignore for the prompt-kit repo itself.
+# The Flask template ships its own rules as templates/flask-service/gitignore.txt,
+# which you rename to .gitignore when you copy the template into a new project.
+# This file exists because without it, running the template's tests in place
+# commits __pycache__ into this repo.
+
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.venv/
+venv/
+.env
+*.bak
+.DS_Store
+Thumbs.db
+data/raw/

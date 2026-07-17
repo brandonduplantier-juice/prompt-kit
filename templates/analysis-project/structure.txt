@@ -3,15 +3,21 @@ Standard analysis repo layout. Numbered scripts run in order, top to bottom.
 <project>/
   README.md              finding first, limitations honest
   METHODS.md             filled in BEFORE the analysis
+  data_dictionary.md     every column defined once, so a metric cannot drift
   requirements.txt       pinned
   .gitignore             .venv, .env, data/raw
+  schema.py              the pandera contract, imported by 02 and 03
   data/
-    raw/                 gitignored, never edited, never committed
+    raw/                 gitignored, never edited, never committed, never written to
     processed/           outputs of 02, safe to delete and regenerate
-  01_load.py             pull or point at the source, write to data/raw
-  02_clean.py            data/raw to data/processed, prints row counts each step
+      clean.parquet      the only file 03 is allowed to read
+      rejects.csv        every dropped row, with its reason
+      drop_log.md        generated, paste into METHODS.md
+  extract.sql            the pull, with grain and reconciliation in the header
+  01_load.py             run extract.sql or fetch the source, write to data/raw
+  02_clean.py            data/raw to data/processed, logs every row it drops
   03_analyze.py          prints every number that appears in the report
-  04_figures.py          writes to figures/
+  04_figures.py          uses brand/brandon.mplstyle, writes to figures/
   figures/
   notebooks/             exploration only, never the source of a reported number
 

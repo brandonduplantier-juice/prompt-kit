@@ -1,0 +1,6 @@
+# Pinned. Verified working together on 2026-07-17.
+pandas==2.2.2
+pandera==0.32.1
+pyarrow==17.0.0
+matplotlib==3.9.2
+numpy==2.1.1
