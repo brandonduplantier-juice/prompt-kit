@@ -158,3 +158,8 @@ Every prompt file carries a version in its name once it has been through the che
 (`<name>-prompt-v2.md`). The changelog goes at the top of the file. Do not overwrite a
 prompt in place with no record of what changed, because when output quality drops you will
 have no way to tell which edit did it.
+
+## Project navigation
+
+- [Engineering guide](ENGINEERING.md): directory map, development workflow and review standards.
+- [Documentation index](DOCUMENTATION.md): technical documents and existing project resources.
