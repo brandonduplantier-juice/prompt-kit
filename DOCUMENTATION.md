@@ -17,3 +17,7 @@ The following map points to existing documents and directories; their contents a
 
 - [docs/llm-patterns.md](docs/llm-patterns.md)
 - [docs/sql-patterns.md](docs/sql-patterns.md)
+
+## Release management
+
+- [Release and versioning policy](RELEASE_POLICY.md): verification, version naming, release evidence and rollback requirements.
